@@ -1,0 +1,66 @@
+{
+  "version": 2,
+  "dgSpecHash": "HKvAqHAffPk=",
+  "success": true,
+  "projectFilePath": "/Users/macmini/Work/online-image-resizer/server/server.Tests/server.Tests.csproj",
+  "expectedPackageFiles": [
+    "/Users/macmini/.nuget/packages/castle.core/5.1.1/castle.core.5.1.1.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/coverlet.collector/6.0.4/coverlet.collector.6.0.4.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.aspnetcore.connections.abstractions/8.0.0/microsoft.aspnetcore.connections.abstractions.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.aspnetcore.http.connections.client/8.0.0/microsoft.aspnetcore.http.connections.client.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.aspnetcore.http.connections.common/8.0.0/microsoft.aspnetcore.http.connections.common.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.aspnetcore.signalr.client/8.0.0/microsoft.aspnetcore.signalr.client.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.aspnetcore.signalr.client.core/8.0.0/microsoft.aspnetcore.signalr.client.core.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.aspnetcore.signalr.common/8.0.0/microsoft.aspnetcore.signalr.common.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.aspnetcore.signalr.protocols.json/8.0.0/microsoft.aspnetcore.signalr.protocols.json.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.codecoverage/17.14.1/microsoft.codecoverage.17.14.1.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.extensions.dependencyinjection/8.0.0/microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.extensions.features/8.0.0/microsoft.extensions.features.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.extensions.logging/8.0.0/microsoft.extensions.logging.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.extensions.options/8.0.0/microsoft.extensions.options.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.net.test.sdk/17.14.1/microsoft.net.test.sdk.17.14.1.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/microsoft.testplatform.objectmodel.17.14.1.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.testplatform.testhost/17.14.1/microsoft.testplatform.testhost.17.14.1.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/moq/4.20.70/moq.4.20.70.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/sixlabors.imagesharp/3.1.5/sixlabors.imagesharp.3.1.5.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/system.diagnostics.eventlog/6.0.0/system.diagnostics.eventlog.6.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/xunit/2.9.3/xunit.2.9.3.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/xunit.abstractions/2.0.3/xunit.abstractions.2.0.3.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/xunit.analyzers/1.18.0/xunit.analyzers.1.18.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/xunit.assert/2.9.3/xunit.assert.2.9.3.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/xunit.core/2.9.3/xunit.core.2.9.3.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/xunit.extensibility.core/2.9.3/xunit.extensibility.core.2.9.3.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/xunit.extensibility.execution/2.9.3/xunit.extensibility.execution.2.9.3.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/xunit.runner.visualstudio/3.1.4/xunit.runner.visualstudio.3.1.4.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'SixLabors.ImageSharp' 3.1.5 has a known high severity vulnerability, https://github.com/advisories/GHSA-2cmq-823j-5qj8",
+      "projectPath": "/Users/macmini/Work/online-image-resizer/server/server.Tests/server.Tests.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/macmini/Work/online-image-resizer/server/server.Tests/server.Tests.csproj",
+      "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'SixLabors.ImageSharp' 3.1.5 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-rxmq-m78w-7wmc",
+      "projectPath": "/Users/macmini/Work/online-image-resizer/server/server.Tests/server.Tests.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/macmini/Work/online-image-resizer/server/server.Tests/server.Tests.csproj",
+      "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}

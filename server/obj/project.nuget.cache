@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "dgSpecHash": "2wKPx4c58uw=",
+  "success": true,
+  "projectFilePath": "/Users/macmini/Work/online-image-resizer/server/server.csproj",
+  "expectedPackageFiles": [
+    "/Users/macmini/.nuget/packages/microsoft.aspnetcore.http.connections.client/8.0.0/microsoft.aspnetcore.http.connections.client.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.aspnetcore.signalr.client/8.0.0/microsoft.aspnetcore.signalr.client.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/microsoft.aspnetcore.signalr.client.core/8.0.0/microsoft.aspnetcore.signalr.client.core.8.0.0.nupkg.sha512",
+    "/Users/macmini/.nuget/packages/sixlabors.imagesharp/3.1.5/sixlabors.imagesharp.3.1.5.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'SixLabors.ImageSharp' 3.1.5 has a known high severity vulnerability, https://github.com/advisories/GHSA-2cmq-823j-5qj8",
+      "projectPath": "/Users/macmini/Work/online-image-resizer/server/server.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/macmini/Work/online-image-resizer/server/server.csproj",
+      "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'SixLabors.ImageSharp' 3.1.5 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-rxmq-m78w-7wmc",
+      "projectPath": "/Users/macmini/Work/online-image-resizer/server/server.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/macmini/Work/online-image-resizer/server/server.csproj",
+      "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}
