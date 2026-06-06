@@ -1,7 +1,7 @@
 import { AnimatePresence } from 'framer-motion';
 import { useAppStore } from '../../store/useAppStore';
 import { FileCard } from '../FileCard';
-import * as React from "react";
+import * as React from 'react';
 
 export function FileList(): React.ReactElement | null {
   const jobs = useAppStore((s) => s.jobs);

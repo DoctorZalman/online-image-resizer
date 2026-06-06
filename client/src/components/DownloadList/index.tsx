@@ -1,6 +1,6 @@
 import { useAppStore } from '../../store/useAppStore';
 import { getDownloadUrl } from '../../api/imageApi';
-import * as React from "react";
+import * as React from 'react';
 
 export function DownloadList(): React.ReactElement | null {
   const jobs = useAppStore((s) => s.jobs);
@@ -18,9 +18,7 @@ export function DownloadList(): React.ReactElement | null {
           key={job.jobId}
           className="flex items-center justify-between gap-2 p-3 rounded-xl border border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-950"
         >
-          <span className="text-sm text-gray-800 dark:text-gray-100 truncate">
-            {job.fileName}
-          </span>
+          <span className="text-sm text-gray-800 dark:text-gray-100 truncate">{job.fileName}</span>
           {/* - use downloadUrl from SignalR if available, fallback to REST endpoint */}
           <a
             href={job.downloadUrl ?? getDownloadUrl(job.jobId)}

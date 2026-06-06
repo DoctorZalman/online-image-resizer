@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useAppStore } from '../../store/useAppStore.ts';
-import {type ReactElement, useEffect} from 'react';
+import { type ReactElement, useEffect } from 'react';
 
 // - sync theme class on <html> element
 function applyTheme(theme: 'light' | 'dark'): void {
