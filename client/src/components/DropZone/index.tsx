@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 import { uploadImages } from '../../api/imageApi';
 import { useAppStore } from '../../store/useAppStore';
-import * as React from "react";
+import * as React from 'react';
 
 const MAX_FILES = 10;
 const ACCEPTED_TYPES = { 'image/jpeg': [], 'image/png': [] };

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import type { FileCardProps } from './types';
-import * as React from "react";
+import * as React from 'react';
 
 const STATUS_LABELS: Record<FileCardProps['status'], string> = {
   queued: 'Queued',
@@ -29,7 +29,14 @@ const cardVariants = {
   exit: { opacity: 0, y: -8 },
 };
 
-export function FileCard({ jobId: _, fileName, size, status, progress, error }: FileCardProps): React.ReactElement {
+export function FileCard({
+  jobId: _,
+  fileName,
+  size,
+  status,
+  progress,
+  error,
+}: FileCardProps): React.ReactElement {
   return (
     <motion.div
       variants={cardVariants}
@@ -62,9 +69,7 @@ export function FileCard({ jobId: _, fileName, size, status, progress, error }: 
         </div>
       )}
 
-      {status === 'failed' && error && (
-        <span className="text-xs text-red-500">{error}</span>
-      )}
+      {status === 'failed' && error && <span className="text-xs text-red-500">{error}</span>}
     </motion.div>
   );
 }

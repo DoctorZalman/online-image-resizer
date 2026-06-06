@@ -1,34 +1,53 @@
+using ImageResizer.Hubs;
+using ImageResizer.Middleware;
+using ImageResizer.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// - register controllers
+builder.Services.AddControllers();
+
+// - register SignalR for real-time progress updates
+builder.Services.AddSignalR();
+
+// - register app services in DI container
+builder.Services.AddSingleton<UserQueueManager>();
+builder.Services.AddSingleton<ImageResizeService>();
+
+// - register background services
+builder.Services.AddHostedService<ResizeWorker>();
+builder.Services.AddHostedService<CleanupService>();
+
+// - allow client origin with credentials for SignalR
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        "ClientPolicy",
+        policy =>
+        {
+            policy
+                .WithOrigins("http://localhost:3000", "http://localhost:5173")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+        }
+    );
+});
+
+// - increase max request size to 100MB for image uploads
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Limits.MaxRequestBodySize = 100 * 1024 * 1024;
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.UseCors("ClientPolicy");
 
-app.UseHttpsRedirection();
+// - session middleware must run before controllers and SignalR hub
+app.UseMiddleware<SessionMiddleware>();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-});
+app.MapControllers();
+app.MapHub<ResizeHub>("/hubs/resize");
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

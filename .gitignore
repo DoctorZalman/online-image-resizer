@@ -1,6 +1,23 @@
+# Node
 client/node_modules/
 client/.yarn/cache
 client/dist/
 
+# .NET
+server/bin/
+server/obj/
+server.Tests/bin/
+server.Tests/obj/
+*.user
+*.suo
+*.userprefs
+
 # IDE
-.idea
+.idea/
+.vscode/
+
+# macOS
+.DS_Store
+
+# Temp files
+tmp/

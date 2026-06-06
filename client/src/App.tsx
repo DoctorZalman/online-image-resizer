@@ -1,10 +1,10 @@
-import * as React from "react";
+import * as React from 'react';
 import { useResizeSignalR } from './hooks/useResizeSignalR';
 import { DropZone } from './components/DropZone';
 import { FileList } from './components/FileList';
 import { ResizeControls } from './components/ResizeControls';
 import { DownloadList } from './components/DownloadList';
-import {ThemeToggle} from "./components/ThemeToggle";
+import { ThemeToggle } from './components/ThemeToggle';
 
 export function App(): React.ReactElement {
   // - establish SignalR connection for the lifetime of the app
