@@ -3,7 +3,6 @@ import * as signalR from '@microsoft/signalr';
 import { toast } from 'sonner';
 import { useAppStore } from '../store/useAppStore';
 
-// - SignalR event payloads matching server hub messages
 interface ProgressPayload {
   jobId: string;
   progress: number;
@@ -26,28 +25,23 @@ export function useResizeSignalR(): void {
   const connectionRef = useRef<signalR.HubConnection | null>(null);
 
   useEffect(() => {
-    // - build connection with automatic reconnect
+    let cancelled = false;
+
     const connection = new signalR.HubConnectionBuilder()
-      .withUrl('/hubs/resize', { withCredentials: true })
+      .withUrl('/hubs/resize', {
+        withCredentials: true,
+        transport: signalR.HttpTransportType.LongPolling,
+      })
       .withAutomaticReconnect()
       .configureLogging(signalR.LogLevel.Warning)
       .build();
 
-    // - progress update from server (0-100)
     connection.on('ResizeProgress', (payload: ProgressPayload) => {
-      updateJob(payload.jobId, {
-        progress: payload.progress,
-        status: 'processing',
-      });
+      updateJob(payload.jobId, { progress: payload.progress, status: 'processing' });
     });
 
-    // - job finished - update store and notify user
     connection.on('ResizeComplete', (payload: CompletePayload) => {
-      updateJob(payload.jobId, {
-        status: 'done',
-        progress: 100,
-        downloadUrl: payload.downloadUrl,
-      });
+      updateJob(payload.jobId, { status: 'done', progress: 100, downloadUrl: payload.downloadUrl });
       toast.success('Done! Ready to download', {
         action: {
           label: 'Download',
@@ -56,22 +50,25 @@ export function useResizeSignalR(): void {
       });
     });
 
-    // - job failed - update store and notify user
     connection.on('ResizeFailed', (payload: FailedPayload) => {
-      updateJob(payload.jobId, {
-        status: 'failed',
-        error: payload.error,
-      });
+      updateJob(payload.jobId, { status: 'failed', error: payload.error });
       toast.error('Processing failed, please retry');
     });
 
     connectionRef.current = connection;
 
-    connection.start().catch(() => {
-      toast.error('Realtime connection failed, progress may be delayed');
-    });
+    // - guard against StrictMode double-invoke: skip start if already cancelled
+    connection
+      .start()
+      .then(() => {
+        if (cancelled) connection.stop();
+      })
+      .catch(() => {
+        if (!cancelled) toast.error('Realtime connection failed, progress may be delayed');
+      });
 
     return () => {
+      cancelled = true;
       connection.stop();
     };
   }, [updateJob]);
