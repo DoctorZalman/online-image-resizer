@@ -3,6 +3,7 @@ import type { FileCardProps } from './types';
 import * as React from 'react';
 
 const STATUS_LABELS: Record<FileCardProps['status'], string> = {
+  idle: 'Ready',
   queued: 'Queued',
   processing: 'Processing',
   done: 'Done',
@@ -10,7 +11,8 @@ const STATUS_LABELS: Record<FileCardProps['status'], string> = {
 };
 
 const STATUS_COLORS: Record<FileCardProps['status'], string> = {
-  queued: 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300',
+  idle: 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300',
+  queued: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300',
   processing: 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
   done: 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300',
   failed: 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300',
