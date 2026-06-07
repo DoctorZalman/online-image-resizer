@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-
-export type JobStatus = 'queued' | 'processing' | 'done' | 'failed';
+import type { JobStatus } from './types.ts';
 
 // - shape of a single resize job tracked on the client
 export interface JobState {
@@ -45,7 +44,7 @@ export const useAppStore = create<AppStore>()(
           set((state) => {
             const added: Record<string, JobState> = {};
             for (const j of newJobs) {
-              added[j.jobId] = { ...j, status: 'queued', progress: 0 };
+              added[j.jobId] = { ...j, status: 'idle', progress: 0 };
             }
             const jobs = { ...state.jobs, ...added };
             return { jobs, isProcessing: deriveIsProcessing(jobs) };

@@ -37,11 +37,17 @@ export function useResizeSignalR(): void {
       .build();
 
     connection.on('ResizeProgress', (payload: ProgressPayload) => {
+      const current = useAppStore.getState().jobs[payload.jobId];
+      if (current?.status === 'done' || current?.status === 'failed') return;
       updateJob(payload.jobId, { progress: payload.progress, status: 'processing' });
     });
 
     connection.on('ResizeComplete', (payload: CompletePayload) => {
-      updateJob(payload.jobId, { status: 'done', progress: 100, downloadUrl: payload.downloadUrl });
+      updateJob(payload.jobId, {
+        status: 'done',
+        progress: 100,
+        downloadUrl: payload.downloadUrl,
+      });
       toast.success('Done! Ready to download', {
         action: {
           label: 'Download',
@@ -57,7 +63,6 @@ export function useResizeSignalR(): void {
 
     connectionRef.current = connection;
 
-    // - guard against StrictMode double-invoke: skip start if already cancelled
     connection
       .start()
       .then(() => {

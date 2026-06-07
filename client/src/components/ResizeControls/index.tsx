@@ -10,7 +10,7 @@ export function ResizeControls(): React.ReactElement | null {
   const [scale, setScale] = useState(50);
 
   // - only show controls when there are uploaded jobs
-  const queuedJobs = Object.values(jobs).filter((j) => j.status === 'queued');
+  const queuedJobs = Object.values(jobs).filter((j) => j.status === 'idle');
   if (Object.values(jobs).length === 0) return null;
 
   const handleResize = async (): Promise<void> => {

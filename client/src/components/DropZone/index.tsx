@@ -61,11 +61,9 @@ export function DropZone(): React.ReactElement {
       >
         <input {...getInputProps()} />
         <p className="text-gray-500 dark:text-gray-400 text-sm">
-          {isProcessing
-            ? 'Processing in progress...'
-            : isDragActive
-              ? 'Drop files here'
-              : 'Drag & drop JPEG/PNG files here, or click to select (max 10)'}
+          {isDragActive
+            ? 'Drop files here'
+            : 'Drag & drop JPEG/PNG files here, or click to select (max 10)'}
         </p>
       </motion.div>
     </div>
