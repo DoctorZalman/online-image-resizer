@@ -1,6 +1,8 @@
 #!/bin/sh
+ROOT=$(git rev-parse --show-toplevel)
+
 echo "Running backend tests..."
-cd server && dotnet test server.Tests/server.Tests.csproj
+cd "$ROOT/server" && dotnet test server.Tests/server.Tests.csproj
 
 echo "Running frontend tests..."
-cd client && yarn test
+cd "$ROOT/client" && yarn test
