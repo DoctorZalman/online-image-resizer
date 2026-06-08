@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useDropzone } from 'react-dropzone';
+import { useDropzone, type FileRejection } from 'react-dropzone';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 import { uploadImages } from '../../api/imageApi';
@@ -14,16 +14,23 @@ export function DropZone(): React.ReactElement {
   const isProcessing = useAppStore((s) => s.isProcessing);
 
   const onDrop = useCallback(
-    async (accepted: File[], rejected: unknown[]) => {
-      if (rejected && (rejected as []).length > 0) {
-        toast.error('Only JPEG/PNG allowed');
-        return;
+    async (accepted: File[], rejected: FileRejection[]) => {
+      if (rejected.length > 0) {
+        const hasTooMany = rejected.some((r) => r.errors.some((e) => e.code === 'too-many-files'));
+        const hasWrongType = rejected.some((r) =>
+          r.errors.some((e) => e.code === 'file-invalid-type'),
+        );
+
+        if (hasTooMany) {
+          toast.error(`Max ${MAX_FILES} files per session`);
+          return;
+        }
+        if (hasWrongType) {
+          toast.error('Only JPEG/PNG allowed');
+          return;
+        }
       }
       if (accepted.length === 0) return;
-      if (accepted.length > MAX_FILES) {
-        toast.error(`Max ${MAX_FILES} files per session`);
-        return;
-      }
 
       try {
         const jobs = await uploadImages(accepted);
@@ -54,8 +61,7 @@ export function DropZone(): React.ReactElement {
         transition={{ duration: 0.2 }}
         className={`
           border-2 border-dashed rounded-xl p-10 text-center cursor-pointer
-          transition-colors select-none
-          ${isDragActive ? 'bg-indigo-50 dark:bg-indigo-950' : 'bg-white dark:bg-gray-900'}
+          transition-colors select-none bg-indigo-50 dark:bg-indigo-950  hover:dark:bg-gray-900 hover:bg-indigo-100
           ${isProcessing ? 'opacity-50 cursor-not-allowed' : 'hover:border-indigo-400'}
         `}
       >
