@@ -25,7 +25,7 @@ export function ThemeToggle(): ReactElement {
   return (
     <button
       onClick={toggle}
-      className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+      className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors w-[45px] h-[45px]"
       aria-label="Toggle theme"
     >
       <motion.span

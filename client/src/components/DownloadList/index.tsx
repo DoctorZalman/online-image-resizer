@@ -1,18 +1,42 @@
 import { useAppStore } from '../../store/useAppStore';
 import { getDownloadUrl } from '../../api/imageApi';
-import * as React from 'react';
+import type { ReactElement } from 'react';
 
-export function DownloadList(): React.ReactElement | null {
+export function DownloadList(): ReactElement | null {
   const jobs = useAppStore((s) => s.jobs);
   const doneJobs = Object.values(jobs).filter((j) => j.status === 'done');
 
   if (doneJobs.length === 0) return null;
 
+  // - trigger browser download for each done job with stagger to avoid blocking
+  const handleDownloadAll = (): void => {
+    doneJobs.forEach((job, i) => {
+      setTimeout(() => {
+        const a = document.createElement('a');
+        a.href = job.downloadUrl ?? getDownloadUrl(job.jobId);
+        a.download = job.fileName;
+        a.click();
+      }, i * 500);
+    });
+  };
+
   return (
     <div className="flex flex-col gap-3">
-      <h2 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-        Ready to Download
-      </h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+          Ready to Download
+        </h2>
+        {doneJobs.length > 1 && (
+          <button
+            onClick={handleDownloadAll}
+            className="text-xs px-3 py-1 rounded-lg bg-indigo-600 text-white
+              hover:bg-indigo-700 transition-colors font-medium"
+          >
+            Download All ({doneJobs.length})
+          </button>
+        )}
+      </div>
+
       {doneJobs.map((job) => (
         <div
           key={job.jobId}
