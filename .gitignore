@@ -20,3 +20,4 @@ server/server.Tests/obj/
 
 # Temp files
 tmp/
+node_modules/

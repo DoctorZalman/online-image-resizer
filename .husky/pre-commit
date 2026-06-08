@@ -1,0 +1,4 @@
+#!/bin/sh
+cd server && csharpier format . && cd ..
+cd client && yarn prettier --write . && cd ..
+git add -A
