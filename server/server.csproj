@@ -9,4 +9,12 @@
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.0" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.7" />
   </ItemGroup>
+
+  <!-- - exclude test project files from main build -->
+  <ItemGroup>
+    <Compile Remove="server.Tests/**" />
+    <Content Remove="server.Tests/**" />
+    <EmbeddedResource Remove="server.Tests/**" />
+    <None Remove="server.Tests/**" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,10 @@
+#!/bin/sh
+ROOT=$(git rev-parse --show-toplevel)
+
+echo "Running CSharpier..."
+cd "$ROOT/server" && csharpier format .
+
+echo "Running Prettier..."
+cd "$ROOT/client" && yarn prettier --write .
+
+git add -A
