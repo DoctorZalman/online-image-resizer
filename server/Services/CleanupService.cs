@@ -1,11 +1,10 @@
 namespace ImageResizer.Services;
 
-// - hosted background service that removes expired temp files every 5 minutes
 public class CleanupService : BackgroundService
 {
     private static readonly TimeSpan Interval = TimeSpan.FromMinutes(5);
     private static readonly TimeSpan MaxAge = TimeSpan.FromMinutes(10);
-    private readonly string _basePath = Path.Combine(Path.GetTempPath(), "image-resizer");
+    private readonly string _defaultBasePath = Path.Combine(Path.GetTempPath(), "image-resizer");
     private readonly ILogger<CleanupService> _logger;
 
     public CleanupService(ILogger<CleanupService> logger)
@@ -18,17 +17,17 @@ public class CleanupService : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             await Task.Delay(Interval, stoppingToken);
-            Cleanup();
+            CleanupDirectory(_defaultBasePath);
         }
     }
 
-    // - delete session folders whose files are older than MaxAge
-    private void Cleanup()
+    // - protected so tests can call with a custom path
+    protected void CleanupDirectory(string basePath)
     {
-        if (!Directory.Exists(_basePath))
+        if (!Directory.Exists(basePath))
             return;
 
-        foreach (var sessionDir in Directory.GetDirectories(_basePath))
+        foreach (var sessionDir in Directory.GetDirectories(basePath))
         {
             try
             {
