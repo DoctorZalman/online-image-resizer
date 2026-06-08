@@ -6,8 +6,8 @@ client/dist/
 # .NET
 server/bin/
 server/obj/
-server.Tests/bin/
-server.Tests/obj/
+server/server.Tests/bin/
+server/server.Tests/obj/
 *.user
 *.suo
 *.userprefs
