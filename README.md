@@ -97,6 +97,15 @@ Open `http://localhost:5173` in your browser.
 
 ---
 
+## Live Demo
+
+- **Frontend:** https://online-image-resizer.up.railway.app
+- **Backend:** https://online-image-resizer-backend.up.railway.app
+
+Deployed on [Railway](https://railway.app) using separate services for frontend (nginx) and backend (ASP.NET Core).
+
+---
+
 ## Docker
 
 ```bash
